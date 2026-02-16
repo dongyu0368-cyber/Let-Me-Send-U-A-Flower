@@ -1,46 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>🌸</title>
 <style>
-body {
-  background: black;
-  color: white;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Helvetica, Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  overflow: hidden;
-}
-.text {
-  opacity: 0;
-  animation: fadeIn 3s forwards;
-  font-size: 28px;
-  letter-spacing: 2px;
-}
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
+  body{
+    background:#000; color:#fff;
+    height:100vh; margin:0;
+    display:flex; flex-direction:column;
+    justify-content:center; align-items:center;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align:center;
+  }
+  .text{
+    font-size: clamp(26px, 4vw, 44px);
+    letter-spacing: 1.5px;
+    opacity:0;
+    animation: fadeIn 1.8s forwards;
+  }
+  @keyframes fadeIn { to{ opacity:1; } }
+
+  .btn{
+    margin-top: 28px;
+    padding: 12px 18px;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 999px;
+    background: rgba(255,255,255,.06);
+    color:#fff;
+    font-size: 16px;
+    letter-spacing: .6px;
+    cursor:pointer;
+    opacity:0;
+    animation: fadeIn 1.2s forwards;
+    animation-delay: 1.6s;
+  }
+  .hint{
+    margin-top: 10px;
+    font-size: 13px;
+    color: rgba(255,255,255,.55);
+    opacity:0;
+    animation: fadeIn 1.2s forwards;
+    animation-delay: 1.9s;
+  }
 </style>
 </head>
 <body>
 
-<div class="text">
-Let me send you a flower 🌸
-</div>
-
-<audio id="bgm" autoplay>
-  <source src="https://drive.google.com/file/d/14L9X_5Lbk3W5MILlAfyg38RrBXL7G06k/view?usp=drive_link" type="audio/mpeg">
-</audio>
+<div class="text">Let me send you a flower 🌸</div>
+<button class="btn" id="playBtn">Tap to open the flower</button>
+<div class="hint" id="status"> </div>
 
 <script>
-setTimeout(function() {
-  document.getElementById("bgm").play();
-}, 2000);
+  // 1) 把你的音频直链放这里
+  const AUDIO_URL = "https://dongyu0368-cyber.github.io/Let-Me-Send-U-A-Flower/FLOWER.m4a";
+
+  const audio = new Audio(AUDIO_URL);
+  audio.preload = "auto";
+
+  const statusEl = document.getElementById("status");
+  const btn = document.getElementById("playBtn");
+
+  btn.addEventListener("click", async () => {
+    try{
+      statusEl.textContent = "…";
+      await audio.play();
+      btn.textContent = "Playing";
+      statusEl.textContent = "";
+    }catch(e){
+      statusEl.textContent = "Can’t play. Link may not be a direct audio file.";
+    }
+  });
 </script>
 
 </body>
