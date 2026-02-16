@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Let me send you a flower 🌸</title>
+
   <style>
     :root{
       --bg:#000;
       --fg:#fff;
       --muted:rgba(255,255,255,.62);
-      --line:rgba(255,255,255,.18);
-      --card:rgba(255,255,255,.06);
-      --shadow: 0 10px 40px rgba(0,0,0,.45);
+      --line:rgba(255,255,255,.14);
     }
+
     html,body{height:100%;}
     body{
       margin:0;
@@ -20,33 +20,33 @@
       color:var(--fg);
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial,
                    "PingFang SC","Hiragino Sans GB","Microsoft YaHei", sans-serif;
-      display:flex;
-      justify-content:center;
     }
+
     .wrap{
-      width:min(1080px, 92vw);
-      padding:48px 0 70px;
+      width:min(980px, 92vw);
+      margin:0 auto;
+      padding:44px 0 80px;
     }
 
     /* Title */
     .title{
-      font-size: clamp(28px, 4.2vw, 54px);
-      letter-spacing: 1.5px;
-      line-height: 1.15;
-      margin: 0 0 18px;
+      font-size: clamp(26px, 4vw, 46px);
+      letter-spacing: 1px;
+      line-height: 1.18;
+      margin: 0 0 10px;
       opacity:0;
       transform: translateY(6px);
       animation: in .9s ease forwards;
     }
     .sub{
-      margin:0 0 26px;
+      margin:0 0 22px;
       color:var(--muted);
       font-size: 14px;
       letter-spacing:.4px;
       opacity:0;
       transform: translateY(6px);
       animation: in .9s ease forwards;
-      animation-delay: .15s;
+      animation-delay: .12s;
     }
     @keyframes in { to{opacity:1; transform:translateY(0);} }
 
@@ -55,11 +55,11 @@
       display:flex;
       gap:12px;
       align-items:center;
-      margin: 18px 0 22px;
+      margin: 16px 0 18px;
       opacity:0;
       transform: translateY(6px);
       animation: in .9s ease forwards;
-      animation-delay: .25s;
+      animation-delay: .22s;
     }
     .btn{
       padding: 12px 16px;
@@ -81,66 +81,82 @@
 
     /* Lyrics card */
     .card{
-      border: 1px solid var(--line);
-      background: var(--card);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
+      margin-top: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      border-radius: 22px;
+      box-shadow: 0 18px 70px rgba(0,0,0,.55);
       overflow:hidden;
+      backdrop-filter: blur(10px);
       opacity:0;
-      transform: translateY(8px);
-      transition: opacity .6s ease, transform .6s ease;
+      transform: translateY(10px);
+      transition: opacity .7s ease, transform .7s ease;
     }
     .card.show{
       opacity:1;
       transform: translateY(0);
     }
+
     .head{
       display:flex;
       justify-content:space-between;
       gap:12px;
       padding:14px 18px;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.55);
       font-size: 13px;
       letter-spacing: .4px;
     }
+
     .grid{
       display:grid;
       grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
     .col{
-      padding: 18px;
+      padding: 20px 22px;
     }
     .col + .col{
-      border-left: 1px solid var(--line);
+      border-left: 1px solid rgba(255,255,255,.10);
     }
+
     .line{
-      font-size: 16px;
-      line-height: 1.85;
-      margin: 0 0 10px;
+      font-size: 15.5px;
+      line-height: 2.05;
+      margin: 0 0 14px;
       white-space: pre-wrap;
+      letter-spacing: .2px;
     }
+    .cn .line{ color: rgba(255,255,255,.92); }
     .en .line{
-      color: rgba(255,255,255,.92);
-    }
-    .cn .line{
-      color: rgba(255,255,255,.96);
+      color: rgba(255,255,255,.78);
+      font-style: italic;
     }
 
     /* Mobile */
     @media (max-width: 820px){
+      .wrap{ padding: 36px 0 70px; }
       .grid{ grid-template-columns: 1fr; }
-      .col + .col{ border-left: none; border-top: 1px solid var(--line); }
+      .col + .col{
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,.10);
+      }
       .head{ display:none; }
-      .col{ padding: 16px; }
-      .line{ font-size: 15.5px; }
+      .col{ padding: 18px 18px; }
+      .line{
+        font-size: 15px;
+        line-height: 2.05;
+        margin-bottom: 12px;
+      }
+      .controls{ flex-wrap:wrap; }
     }
   </style>
 </head>
+
 <body>
   <main class="wrap">
     <h1 class="title">Let me send you a flower 🌸</h1>
-    <p class="sub">Tap once to play. Lyrics appear below.</p>
+    <p class="sub">Tap once to play. Then read it like a quiet letter.</p>
 
     <div class="controls">
       <button class="btn" id="playBtn">Tap to open the flower</button>
@@ -155,7 +171,7 @@
 
       <div class="grid">
         <!-- Chinese -->
-        <div class="col cn" id="cnCol">
+        <div class="col cn">
           <p class="line">窗外阳光斜斜洒落，</p>
           <p class="line">洒满淡淡的落寞，</p>
           <p class="line">一个人坐在角落，</p>
@@ -166,6 +182,7 @@
           <p class="line">竟然躲不过，</p>
           <p class="line">让我送你花一朵 思念已久，</p>
           <p class="line">让我送你花一朵 思念依旧。</p>
+
           <p class="line">心像随处摆放的包裹，</p>
           <p class="line">散落房间角落，</p>
           <p class="line">面对或是要出走 我以为我懂，</p>
@@ -173,6 +190,7 @@
           <p class="line">我想需要 找到个理由，</p>
           <p class="line">我想我需要勇气 放肆哭泣，</p>
           <p class="line">才会发现 你一直在那里，</p>
+
           <p class="line">让我送你花一朵 思念已久，</p>
           <p class="line">让我送你花一朵 思念依旧。</p>
           <p class="line">让我送你花一朵 思念已久，</p>
@@ -180,7 +198,7 @@
         </div>
 
         <!-- English -->
-        <div class="col en" id="enCol">
+        <div class="col en">
           <p class="line">The sunlight slants gently through the window,</p>
           <p class="line">spilling over a faint loneliness.</p>
           <p class="line">Sitting alone in the corner,</p>
@@ -191,6 +209,7 @@
           <p class="line">Yet somehow, I cannot escape it.</p>
           <p class="line">Let me send you a flower — I have missed you for so long.</p>
           <p class="line">Let me send you a flower — the longing remains unchanged.</p>
+
           <p class="line">My heart feels like a parcel left anywhere,</p>
           <p class="line">scattered in the corners of the room.</p>
           <p class="line">Whether to face it or to walk away — I thought I understood.</p>
@@ -198,6 +217,7 @@
           <p class="line">I think I need to find a reason.</p>
           <p class="line">I think I need the courage to cry without restraint.</p>
           <p class="line">Only then do I realize — you have always been there.</p>
+
           <p class="line">Let me send you a flower — I have missed you for so long.</p>
           <p class="line">Let me send you a flower — the longing still lingers.</p>
           <p class="line">Let me send you a flower — I have missed you for so long.</p>
@@ -208,7 +228,8 @@
   </main>
 
   <script>
-    // ✅ 把这里改成你仓库里的音频文件名（建议你文件名叫 flower.m4a 或 flower.mp3）
+    // ✅ 把这里改成你仓库里真实的音频文件名（大小写必须一致）
+    // 例如： "./flower.m4a"
     const AUDIO_URL = "./FLOWER.m4a";
 
     const audio = new Audio(AUDIO_URL);
@@ -218,25 +239,25 @@
     const statusEl = document.getElementById("status");
     const card = document.getElementById("lyricsCard");
 
-    function showLyrics(){
+    function revealAndScroll(){
       card.classList.add("show");
+      card.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     btn.addEventListener("click", async () => {
       try{
         statusEl.textContent = "…";
-        showLyrics();
+        revealAndScroll();
         await audio.play();
         btn.textContent = "Playing";
         statusEl.textContent = "";
       }catch(e){
-        showLyrics();
+        revealAndScroll();
         statusEl.textContent = "Can’t play. Check the audio filename/path.";
       }
     });
 
-    // 如果用户手动开始播放（比如系统弹出播放条），也显示歌词
-    audio.addEventListener("play", showLyrics);
+    audio.addEventListener("play", revealAndScroll);
   </script>
 </body>
 </html>
