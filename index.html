@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>🌸</title>
+<style>
+body {
+  background: black;
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  overflow: hidden;
+}
+.text {
+  opacity: 0;
+  animation: fadeIn 3s forwards;
+  font-size: 28px;
+  letter-spacing: 2px;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<div class="text">
+Let me send you a flower 🌸
+</div>
+
+<audio id="bgm" autoplay>
+  <source src="https://drive.google.com/file/d/14L9X_5Lbk3W5MILlAfyg38RrBXL7G06k/view?usp=drive_link" type="audio/mpeg">
+</audio>
+
+<script>
+setTimeout(function() {
+  document.getElementById("bgm").play();
+}, 2000);
+</script>
+
+</body>
+</html>
